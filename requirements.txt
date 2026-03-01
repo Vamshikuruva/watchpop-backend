@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+chromadb
+pydantic
+requests
+python-dotenv
+python-jose
+passlib[argon2]
+google-auth
+email-validator
