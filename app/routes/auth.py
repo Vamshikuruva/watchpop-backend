@@ -18,8 +18,10 @@ def set_refresh_cookie(response: Response, refresh_token: str):
         key=REFRESH_COOKIE_NAME,
         value=refresh_token,
         httponly=True,
-        secure=False,  # set False only for local dev if needed
-        samesite="lax",
+        # secure=False,  # set False only for local dev if needed
+        # samesite="lax",
+        secure=True,
+        samesite="none",
         max_age=60 * 60 * 24 * 30,  # 30 days
         path="/auth",
     )
@@ -31,8 +33,10 @@ def set_access_cookie(response: Response, access_token: str):
         key=ACCESS_COOKIE_NAME,
         value=access_token,
         httponly=True,
-        secure=False,  # False for local dev only
-        samesite="lax",
+        # secure=False,  # False for local dev only
+        # samesite="lax",
+        secure=True,
+        samesite="none",
         max_age=60 * 15,  # 15 minutes
         path="/",
     )
@@ -106,6 +110,7 @@ def refresh(request: Request, response: Response):
 @router.post("/logout")
 def logout(response: Response):
     response.delete_cookie(REFRESH_COOKIE_NAME, path="/auth")
+    response.delete_cookie(ACCESS_COOKIE_NAME, path="/")
     return {"message": "Logged out successfully"}
 
 

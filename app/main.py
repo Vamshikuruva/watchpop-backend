@@ -10,7 +10,7 @@ app = FastAPI(title="Movies & Songs Watchlist")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://watchpop-frontend.vercel.app"],
+    allow_origins=["https://watchpop.vercel.app"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
